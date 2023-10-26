@@ -1,4 +1,4 @@
-import { IonButton, IonCard, IonCardContent, IonContent, IonHeader, IonIcon, IonInput, IonPage, IonTitle, IonToolbar, useIonLoading, useIonRouter } from '@ionic/react';
+import { IonButton, IonCard, IonCardContent, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonInput, IonPage, IonRow, IonTitle, IonToolbar, useIonLoading, useIonRouter } from '@ionic/react';
 import React, { useEffect, useState } from 'react';
 import {logInOutline, personCircleOutline} from 'ionicons/icons'
 import Examp from '../assets/block-icon-examp.png';
@@ -21,7 +21,6 @@ const Login: React.FC = () => {
     }, [])
     const doLogin = async (event: any) => {
         event.preventDefault();
-        console.log('doLogin');
         await present('Loading in...');
         setTimeout(async () => {
             dismiss();
@@ -50,11 +49,18 @@ const Login: React.FC = () => {
                     <IonTitle>Login Page</IonTitle>
                 </IonToolbar>
             </IonHeader>
-            <IonContent scrollY={false} >
-                <div className='ion-text-center ion-padding'>
-                <img src={Examp} alt='Examp logo' width={'50%'}/>
-                </div>
-                <IonCard>
+            <IonContent scrollY={false} className='ion-padding' >
+                <IonGrid fixed>
+                    <IonRow class='ion-justify-content-center' >
+                        <IonCol size='12' sizeMd='8' sizeLg='6' sizeXl='4'>
+                        <div className='ion-text-center ion-padding'>
+                            <img src={Examp} alt='Examp logo' width={'50%'}/>
+                        </div>
+                        </IonCol>
+                    </IonRow>
+                    <IonRow class='ion-justify-content-center' >
+                        <IonCol size='12' sizeMd='8' sizeLg='6' sizeXl='4'>
+                        <IonCard>
                     <IonCardContent>
                         <form onSubmit={doLogin}>
                             <IonInput fill='outline' label='Email' labelPlacement='floating' placeholder='Enter text' type='email'/>
@@ -74,6 +80,9 @@ const Login: React.FC = () => {
                         </form>
                     </IonCardContent>
                 </IonCard>
+                        </IonCol>
+                        </IonRow>
+                </IonGrid>
             </IonContent>
         </IonPage>
         )}
